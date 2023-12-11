@@ -13,6 +13,6 @@ app = _fastapi.FastAPI()
 async def create_user(user:_schemas.UserCreate, db: _orm.Session = _fastapi.Depends(_services.get_db)):
     db_user = _services.get_user_by_email(user.email, db)
     if db_user:
-        raise _fastapi.HTTPException(status_code = 400,detail="Email already use")
+        raise _fastapi.HTTPException(status_code = 400, detail="Email already use")
     
     return await _services.create_user(user,db)
